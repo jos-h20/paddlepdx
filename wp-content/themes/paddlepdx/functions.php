@@ -47,6 +47,7 @@ function paddlepdx_setup() {
 		'primary' => esc_html__( 'Primary', 'paddlepdx' ),
 	) );
 
+
 	/*
 	 * Switch default core markup for search form, comment form, and comments
 	 * to output valid HTML5.
