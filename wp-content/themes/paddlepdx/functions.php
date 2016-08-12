@@ -102,9 +102,13 @@ add_action( 'widgets_init', 'paddlepdx_widgets_init' );
  * Enqueue scripts and styles.
  */
 function paddlepdx_scripts() {
+	wp_enqueue_style( 'bootstrap-styles', get_template_directory_uri() . '/css/bootstrap.min.css', array(), '3.3.7', 'all' );
+
+	wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/css/font-awesome.min.css', array(), '4.6.3', 'all' );
+
 	wp_enqueue_style( 'paddlepdx-style', get_stylesheet_uri() );
 
-	wp_enqueue_script( 'paddlepdx-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
+	wp_enqueue_script( 'bootstrap-js', get_template_directory_uri() . '/js/bootstrap.min.js', array('jquery'), '3.3.7', true );
 
 	wp_enqueue_script( 'paddlepdx-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
 
@@ -113,6 +117,20 @@ function paddlepdx_scripts() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'paddlepdx_scripts' );
+
+/* Add respond.js for IE
+*/
+if(!function_exists('ie_scripts')) {
+		function ie_scripts() {
+				echo '<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->';
+				echo '<!-- WARNING: Respond.js doesn\'t work if you view the page via file:// -->';
+				echo '<!--[if lt IE 9]>';
+				echo '<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>';
+				echo '<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>';
+				echo '<![endif]-->';
+	}
+	add_action('wp_head', 'ie_scripts');
+}
 
 /**
  * Implement the Custom Header feature.
@@ -138,3 +156,7 @@ require get_template_directory() . '/inc/customizer.php';
  * Load Jetpack compatibility file.
  */
 require get_template_directory() . '/inc/jetpack.php';
+/**
+ * Load Bootstrap Menu.
+ */
+require get_template_directory() . '/inc/bootstrap-walker.php';
