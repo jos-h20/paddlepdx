@@ -13,13 +13,30 @@
 
 	</div><!-- #content -->
 
+
+
 	<footer id="colophon" class="site-footer" role="contentinfo">
-		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'paddlepdx' ) ); ?>"><?php printf( esc_html__( 'Proudly powered by %s', 'paddlepdx' ), 'WordPress' ); ?></a>
-			<span class="sep"> | </span>
-			<?php printf( esc_html__( 'Theme: %1$s by %2$s.', 'paddlepdx' ), 'paddlepdx', '<a href="http://underscores.me/" rel="designer">Underscores.me</a>' ); ?>
-		</div><!-- .site-info -->
-	</footer><!-- #colophon -->
+
+		<div class="container">
+			<div class="row">
+			<div class="col-md-6 col-lg-6">
+				<?php if (has_nav_menu('footer-menu', 'paddlepdx')) { ?>
+								<nav role="navigation">
+								<?php wp_nav_menu(array(
+									'container'       => '',
+									'menu_class'      => 'footer-menu',
+									'theme_location'  => 'footer-menu')
+								);
+								?>
+							</nav>
+							<?php } ?>
+			</div>
+			<div class="col-md-6 col-lg-6">
+				<p class="copyright">&copy; <?php _e('Copyright', 'paddlepdx'); ?> <?php echo date('Y'); ?> - <a href="<?php echo home_url(); ?>/" title="<?php bloginfo('name'); ?>" rel="home"><?php bloginfo('name'); ?></a></p>
+			</div>
+		</div><!-- .row -->
+	</div><!-- .containr -->
+</footer><!-- #colophon -->
 </div><!-- #page -->
 
 <?php wp_footer(); ?>
